@@ -145,6 +145,7 @@ class CycleGANModel(BaseModel):
 
     def backward_D_B(self):
         """Calculate GAN loss for discriminator D_B"""
+        # 有50%的几率选中新输入的self.fake_A，还有50%的几率从self.images的50张切片中选出一张返回，并将新的一张图片给添加进去
         fake_A = self.fake_A_pool.query(self.fake_A)
         self.loss_D_B = self.backward_D_basic(self.netD_B, self.real_A, fake_A)
 
